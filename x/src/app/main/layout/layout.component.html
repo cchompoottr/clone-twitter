@@ -1,1 +1,14 @@
-<p>layout works!</p>
+<div class="h-screen bg-white">
+    <div class="container h-full mx-auto xl:px-30 max-w-6xl">
+        <div class="grid grid-cols-4 h-full">
+            <app-sidebar/>
+                <div class="col-span-3 lg:col-span-2 border-x-[1px] boader-neutral-400">
+                <!-- header-->
+                    <app-header title="หน้าแรก" [showBackArrow]="true"/>
+                    <router-outlet></router-outlet>
+                </div>
+                <!-- follow bar-->
+                    <app-follow-bar/>
+        </div>
+    </div>
+</div>
