@@ -1,0 +1,74 @@
+<Modal 
+    actionLabel="Register" 
+    [isOpen]="true"
+    title="สร้างบัญชี twitter ของคุณ"
+    (onClose)="this.modalService.isRegisterModelOpen.set(false)"
+    (formSubmitted)="handleSubmit()"
+    [footer]="footer"
+    [disabled]="registerForm.invalid">
+
+    <form [formGroup]="registerForm">
+        <div class="flex flex-col gap-4">
+            <div class="form-wrapper">
+                <input 
+                    type="text" 
+                    placeholder="Email" 
+                    formControlName="email" 
+                    [ngClass]="getInputClasses('email')"
+                />
+                <ng-container *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+                    <span class="text-red-500 text-sm ps-2">
+                      ใส่ที่อยู่อีเมลล์ของคุณ
+                    </span>
+                </ng-container>
+            </div>
+
+            <div class="form-wrapper">
+                <input 
+                    type="text" 
+                    [ngClass]="getInputClasses('username')" 
+                    placeholder="Username" 
+                    formControlName="username"/>
+                <ng-container *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
+                    <span class="text-red-500 text-sm ps-2">
+                      ใส่ชื่อบัญชีผู้ใช้ของคุณ 
+                    </span>
+                </ng-container>
+            </div>
+
+
+            <div class="form-wrapper">
+                <input 
+                    type="password" 
+                    placeholder="Password" 
+                    formControlName="password" 
+                    [ngClass]="getInputClasses('password')"
+                />
+                <ng-container 
+                    *ngIf="
+                    registerForm.get('password')?.invalid && 
+                    registerForm.get('password')?.touched">
+
+                    <span class="text-red-500 text-sm ps-2" *ngIf="registerForm.get('password')?.hasError('required')">
+                      โปรดรักษาความปลอดภัยบัญชีของคุณ
+                    </span>
+                    <span class="text-red-500 text-sm ps-2" *ngIf="registerForm.get('password')?.hasError('minlegth')">
+                        รหัสผ่านต้องมีอักขระอย่างน้อย 6 ตัว
+                    </span>
+                </ng-container>
+            </div>
+
+
+        </div>
+    </form>
+</Modal>
+
+<ng-template #footer>
+    <div class="text-black text-center mt-4">
+        <p>คุณมีบัญชี twitter อยู่แล้ว
+            <a (click)="login()" class="text-twitter-blue cursor-pointer">
+                ลงชื่อเข้าใช้งาน
+            </a>
+        </p>
+    </div>
+</ng-template>

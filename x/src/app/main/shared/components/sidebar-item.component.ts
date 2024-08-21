@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SidebarItems } from '../../interface';
+import { ModelService } from '../services/model/model.service';
+
 
 @Component({
   selector: 'sidebar-item',
@@ -47,7 +49,9 @@ import { SidebarItems } from '../../interface';
         <g><g><path fill="#ffffff" data-title="Layer 0" xs="0" d="M193.5,35c-29.4,20.6-67.7,52.5-104.9,110.2c-37.3,57.7-55.4,109.1-31.5,94.4c0,0,39.6-76.4,68.2-89.2c28.6-12.8,56-16,73.4-36.7c0,0,7.8-14.4-26.2,0c0,0-11.9-1.7,5.2-10.5c17.1-8.8,52.9-26.8,57.7-42c0,0,7.6-9.7-15.8,0s-27.7,5.4-10.5-5.2c17.2-10.7,35-25.4,36.7-36.7C247.6,7.9,222.8,14.4,193.5,35z M94,37.6c0-5.8-4.7-10.5-10.5-10.5h-63c-5.8,0-10.5,4.7-10.5,10.5v89.2c0,5.8,4.7,10.5,10.5,10.5c5.8,0,10.5-4.7,10.5-10.5V48.1h52.5C89.3,48.1,94,43.5,94,37.6z M227.4,168.8c-5.8,0-10.5,4.7-10.5,10.5v42h-83.9c-5.8,0-10.5,4.7-10.5,10.5c0,5.8,4.7,10.5,10.5,10.5h89.2c0.9,0,1.8-0.1,2.6-0.3c0.8,0.2,1.7,0.3,2.6,0.3c5.8,0,10.5-4.7,10.5-10.5v-52.5C237.8,173.5,233.1,168.8,227.4,168.8z"/><path fill="#ffffff" data-title="Layer 1" xs="1" d="M193.5,35c-29.4,20.6-67.7,52.5-104.9,110.2c-37.3,57.7-55.4,109.1-31.5,94.4c0,0,39.6-76.4,68.2-89.2c28.6-12.8,56-16,73.4-36.7c0,0,7.8-14.4-26.2,0c0,0-11.9-1.7,5.2-10.5c17.1-8.8,52.9-26.8,57.7-42c0,0,7.6-9.7-15.8,0s-27.7,5.4-10.5-5.2c17.2-10.7,35-25.4,36.7-36.7C247.6,7.9,222.8,14.4,193.5,35z M94,37.6c0-5.8-4.7-10.5-10.5-10.5h-63c-5.8,0-10.5,4.7-10.5,10.5v89.2c0,5.8,4.7,10.5,10.5,10.5c5.8,0,10.5-4.7,10.5-10.5V48.1h52.5C89.3,48.1,94,43.5,94,37.6z M227.4,168.8c-5.8,0-10.5,4.7-10.5,10.5v42h-83.9c-5.8,0-10.5,4.7-10.5,10.5c0,5.8,4.7,10.5,10.5,10.5h89.2c0.9,0,1.8-0.1,2.6-0.3c0.8,0.2,1.7,0.3,2.6,0.3c5.8,0,10.5-4.7,10.5-10.5v-52.5C237.8,173.5,233.1,168.8,227.4,168.8z"/></g></g>
       </svg>
     </div>
-    <div class="mt-6 hidden lg:block px-6 py-3 rounded-full bg-twitter-blue hover:bg-opacity-90 cursor-pointer transition">
+    <div 
+      (click)="openLoginModal()"
+      class="mt-6 hidden lg:block px-6 py-3 rounded-full bg-twitter-blue hover:bg-opacity-90 cursor-pointer transition">
       <p class="text-white text-center font-semibold text-[18px]">
         โพสต์
       </p>
@@ -69,5 +73,16 @@ export class SidebarItemComponent {
       icon: 'notifications'
     }
   ]
+
+  constructor(private modalService: ModelService){}
+
+  openLoginModal(): void {
+    console.log('Open Login Modal Clicked'); 
+    this.modalService.isLoginModelOpen.set(true);
+  }
+
+  signOut() {
+    
+  }
 
 }

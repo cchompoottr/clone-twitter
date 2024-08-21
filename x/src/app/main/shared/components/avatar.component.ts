@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
     <div 
     [ngClass]="{'border-4 border-black': hasBorder, 'h-32 w-32': isLarge, 'h-12 w-12': !isLarge}"
     class="rounded-full hover:opacity-90 transition cursor-pointer relative">
-      <img src="./hunn.jpg" class="object-cover rounded-full" alt="avatar">
+      <img src="./user.png" class="object-cover rounded-full h-10 w-10 bg-white p-2" alt="avatar">
     </div>
   `,
   styleUrl: './avatar.component.scss'
