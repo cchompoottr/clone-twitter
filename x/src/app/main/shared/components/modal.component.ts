@@ -22,7 +22,7 @@ import { CommonModule } from '@angular/common';
       outline-none
       focus:outline-none
       bg-white
-      bg-opacity-70
+      bg-opacity-80
     ">
     <div class="relative w-full lg:w-3/6 my-6 mx-auto lg:max-w-3xl h-full lg:h-auto">
       <!--contant -->
@@ -41,6 +41,11 @@ import { CommonModule } from '@angular/common';
         focus:outline-none
         ">
         <!--header-->
+
+        <button class="p-1 ml-auto m-3 border-0 text-black hover:opacity-70 transition">
+          <span class="material-icons">close</span>
+        </button>
+
         <div class="items-center flex justify-center mb-10">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -52,13 +57,9 @@ import { CommonModule } from '@angular/common';
           </svg>
         </div>
 
-        <h3 class="text-3xl font-semibold text-black ml-10">
-          {{title}}
-        </h3>
-        <button class="p-1 ml-auto border-0 text-black hover:opacity-70 transition">
-          <span class="material-icons">close</span>
-        </button>
-      </div>
+        <h3 class="text-3xl text-center font-semibold text-black">{{title}}</h3>
+
+      
       <!--body-->
       <div class="relative p-10 flex-auto">
         <ng-content></ng-content>
@@ -81,6 +82,7 @@ import { CommonModule } from '@angular/common';
         </div>
     </div>
   </div>
+</div>
   `,
   styles: ``
 })
