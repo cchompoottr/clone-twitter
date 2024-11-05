@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModalComponent } from '../../components/modal.component';
 import { ModelService } from '../../services/model/model.service';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-register-modal',
@@ -15,7 +16,7 @@ import { ModelService } from '../../services/model/model.service';
 export class RegisterModalComponent implements OnInit {
   registerForm!: FormGroup; 
 
-  constructor(public modalService: ModelService, private fb: FormBuilder) {}
+  constructor(public modalService: ModelService, private fb: FormBuilder, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -52,8 +53,10 @@ export class RegisterModalComponent implements OnInit {
   }
 
   handleSubmit(): void {
-    if (this.registerForm.valid) {
-      console.log('Form submitted', this.registerForm.value);
-    }
+    const value = this.registerForm.value;
+    console.log(value);
+    this.authService.register(value).then(_res => {
+      this.modalService.isRegisterModelOpen.set(false)
+    })
   }
 }

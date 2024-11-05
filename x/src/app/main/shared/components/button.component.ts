@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   template: `
     <button 
+    (click) = "onSubmit()"
       *ngIf="label"
       [disabled]="disabled"
       [ngClass]="{

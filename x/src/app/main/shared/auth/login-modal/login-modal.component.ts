@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms'; 
 import { ModalComponent } from '../../components/modal.component';
 import { ModelService } from '../../services/model/model.service';
+import { AuthService } from '../../auth.service';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { ModelService } from '../../services/model/model.service';
 export class LoginModalComponent implements OnInit{
   loginForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, public modalService: ModelService) { }
+  constructor(private fb: FormBuilder, public modalService: ModelService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -51,8 +52,7 @@ export class LoginModalComponent implements OnInit{
   }
 
   handleSubmit(): void {
-    if (this.loginForm.valid) {
-      console.log('Form submitted', this.loginForm.value);
-    }
+    const value = this.loginForm.value;
+    this.authService.login(value.email, value.password).then(() => this.modalService.isLoginModelOpen.set(false))
   }
 }

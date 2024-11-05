@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SidebarItems } from '../../interface';
 import { ModelService } from '../services/model/model.service';
+import { AuthService } from '../auth.service';
+
+
 
 
 @Component({
@@ -32,7 +35,7 @@ import { ModelService } from '../services/model/model.service';
   </div>
 
   <!-- logout button -->
-   <div class="flex flex-row items-center">
+   <div (click)="signOut()" *ngIf="authService.UserData | async" class="flex flex-row items-center">
     <div class="material-icons text-black relative text-4xl rounded-full h-16 w-16 flex items-center justify-center p-4 hover:bg-slate-300 hover:bg-opacity-10 cursor-pointer">
       logout
     </div>
@@ -59,7 +62,7 @@ import { ModelService } from '../services/model/model.service';
   `,
   styleUrl: './sidebar-item.component.scss'
 })
-export class SidebarItemComponent {
+export class SidebarItemComponent implements OnInit {
   items: Array<SidebarItems> = [
     {
       label: 'หน้าแรก',
@@ -74,7 +77,23 @@ export class SidebarItemComponent {
     }
   ]
 
-  constructor(private modalService: ModelService){}
+  constructor(private modalService: ModelService, public authService: AuthService){}
+
+  ngOnInit(): void {
+    this.authService.UserData.subscribe((user: any) => {
+      if (!user) {
+        this.items = this.items.filter((item) => {
+          return item.label != 'Profile' 
+        })
+      } else {
+        this.items.push({
+          label: 'Profile',
+          route: `/user/${this.authService.loggedInUserId}`,
+          icon: 'person'
+        })
+      }
+    })
+  }
 
   openLoginModal(): void {
     console.log('Open Login Modal Clicked'); 
@@ -82,7 +101,7 @@ export class SidebarItemComponent {
   }
 
   signOut() {
-    
+    this.authService.signOut()
   }
 
 }

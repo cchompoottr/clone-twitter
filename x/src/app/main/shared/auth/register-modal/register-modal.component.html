@@ -26,6 +26,19 @@
             <div class="form-wrapper">
                 <input 
                     type="text" 
+                    [ngClass]="getInputClasses('name')" 
+                    placeholder="Name" 
+                    formControlName="name"/>
+                <ng-container *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched">
+                    <span class="text-red-500 text-sm ps-2">
+                      ใส่ชื่อของคุณ 
+                    </span>
+                </ng-container>
+            </div>
+
+            <div class="form-wrapper">
+                <input 
+                    type="text" 
                     [ngClass]="getInputClasses('username')" 
                     placeholder="Username" 
                     formControlName="username"/>

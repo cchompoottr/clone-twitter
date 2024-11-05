@@ -42,7 +42,7 @@ import { CommonModule } from '@angular/common';
         ">
         <!--header-->
 
-        <button class="p-1 ml-auto m-3 border-0 text-black hover:opacity-70 transition">
+        <button class="p-1 ml-auto m-3 border-0 text-black hover:opacity-70 transition" (click)="close()">
           <span class="material-icons">close</span>
         </button>
 
