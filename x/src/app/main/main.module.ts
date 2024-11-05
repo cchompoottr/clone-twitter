@@ -15,6 +15,9 @@ import { RegisterModalComponent } from './shared/auth/register-modal/register-mo
 import { ModalComponent } from './shared/components/modal.component';
 import { ButtonComponent } from './shared/components/button.component';
 
+
+
+
 @NgModule({
   declarations: [],
   imports: [
